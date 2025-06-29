@@ -284,7 +284,8 @@ font-size: 0.9rem;
 height: 100px;
 }
 .footer-bottom img {
-width: 55px;
+margin-left: 5px;
+width: 65px;
 display: inline-block;
 transform: translateY(9px);
 filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(0%) hue-rotate(0deg);
@@ -367,4 +368,36 @@ filter: brightness(0) saturate(100%) invert(50%) sepia(0%) saturate(0%) hue-rota
     .burger.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
     .burger.toggle span:nth-child(2) { opacity: 0; }
     .burger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+    /* --- NEW CSS RULES FOR MOBILE WATCH CARDS --- */
+    .watch-info {
+        position: static;
+        transform: none; /* Make it always visible */
+        background: transparent;
+        backdrop-filter: none;
+        text-align: left;
+        padding: 1rem 1.5rem; /* Standard padding */
+    }
+
+    .watch-image-container {
+        /* Ensure the card's main border radius is respected */
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    
+    .watch-card:hover {
+        /* Disable the pop-up and shadow effect on mobile */
+        transform: none;
+        box-shadow: none;
+        border: 1px solid var(--color-border);
+    }
+
+    .watch-card:hover .watch-image {
+        /* Also disable the image zoom effect on tap for mobile */
+        transform: none;
+    }
+
+    .watch-card:hover .watch-info {
+        transform: none; /* Redundant but good for explicitly disabling the reveal */
+    }
 }
