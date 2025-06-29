@@ -11,10 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const hotspots = document.querySelectorAll('.hotspot');
     const hotspotInfos = document.querySelectorAll('.hotspot-info');
-    // Enhanced to select all elements needing animation
     const animatedElements = document.querySelectorAll('[data-animation]');
 
-    // --- DICTIONARY (Unchanged) ---
     const translations = {
         en: {
             logo: "Everluxe", nav_ethos: "Our Vision", nav_featured: "Our Watches", nav_collection: "Collection", nav_appointment: "Contact", hero_title: "Heritage and Splendor", hero_subtitle: "Created not to tell time, but to define it.",
@@ -36,11 +34,10 @@ collection_title: "Коллекция", price_from: " - from", appointment_title
    }
     };
     
-    // --- FUNCTION: Burger menu toggle ---
     const handleNavToggle = () => {
         burger.classList.toggle('toggle');
         navMenu.classList.toggle('nav-active');
-        document.body.classList.toggle('no-scroll'); // Optional: prevent body scroll when menu is open
+        document.body.classList.toggle('no-scroll'); 
     };
 
     const closeNav = () => {
@@ -49,21 +46,17 @@ collection_title: "Коллекция", price_from: " - from", appointment_title
         document.body.classList.remove('no-scroll');
     };
 
-    // --- FUNCTION: Header scroll effect ---
     const handleHeaderScroll = () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     };
 
-    // --- FUNCTION: Language Translation (Slightly improved) ---
     const translatePage = (language) => {
         translatableElements.forEach(element => {
             const key = element.dataset.key;
             const translation = translations[language]?.[key];
             if (translation) {
-                // More robust way to handle prices. We target the specific price_from key
                 if (key === 'price_from') {
-                    // This assumes the structure is always <span data-key="price_from">...</span> PRICE
-                    // The translation text now only applies to the span.
+
                     element.textContent = translation;
                 } else {
                     element.textContent = translation;
@@ -74,15 +67,11 @@ collection_title: "Коллекция", price_from: " - from", appointment_title
         langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === language));
     };
     
-    // --- FUNCTION: Hotspot Interaction ---
-    // PASTE these new variables and functions in the same spot
 
-// --- NEW: HOTSPOT CYCLING LOGIC ---
-let hotspotInterval; // This will hold our timer
-let userInteracted = false; // A flag to know when to stop the timer
-let currentHotspotIndex = 0; // To keep track of which hotspot is showing
-
-// This function cleanly shows a specific hotspot and its info
+//HOTSPOT CYCLING LOGIC ---
+let hotspotInterval;
+let userInteracted = false; 
+let currentHotspotIndex = 0; 
 const activateHotspot = (index) => {
     hotspots.forEach(h => h.classList.remove('active'));
     hotspotInfos.forEach(info => info.classList.remove('active'));
@@ -94,40 +83,33 @@ const activateHotspot = (index) => {
     if (activeInfo) activeInfo.classList.add('active');
 };
 
-// This function starts the automatic 5-second cycling
 const startHotspotCycle = () => {
-    clearInterval(hotspotInterval); // Clear any old timers first
+    clearInterval(hotspotInterval); 
     hotspotInterval = setInterval(() => {
-        if (userInteracted) return; // Stop cycling if user has clicked
+        if (userInteracted) return;
         currentHotspotIndex = (currentHotspotIndex + 1) % hotspots.length;
         activateHotspot(currentHotspotIndex);
-    }, 5000); // 5000 milliseconds = 5 seconds
+    }, 5000); 
 };
 
-// This is the new click handler
 const handleHotspotClick = (e) => {
     const targetHotspot = e.target.closest('.hotspot');
     if (!targetHotspot) return;
-
-    // --- The most important part ---
-    // On the first click, stop the cycle and hand control to the user
     if (!userInteracted) {
         clearInterval(hotspotInterval);
         userInteracted = true;
     }
 
     const hotspotId = targetHotspot.dataset.hotspot;
-    currentHotspotIndex = parseInt(hotspotId) - 1; // Update our tracker
-    activateHotspot(currentHotspotIndex); // Show the clicked hotspot immediately
+    currentHotspotIndex = parseInt(hotspotId) - 1;
+    activateHotspot(currentHotspotIndex); 
 };
 
-    // --- ENHANCED: Animate on Scroll using Intersection Observer ---
     const handleScrollAnimation = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const animationType = entry.target.dataset.animation;
                 
-                // Handle staggered animations for child elements
                 if (animationType === 'stagger-children') {
                     const children = entry.target.querySelectorAll('.watch-card');
                     children.forEach((child, index) => {
@@ -135,10 +117,10 @@ const handleHotspotClick = (e) => {
                     });
                 }
                 
-                // Add the 'visible' class to trigger the animation defined in CSS
                 entry.target.classList.add('visible');
 
-                // Stop observing the element once it has animated
+
+
                 observer.unobserve(entry.target);
             }
         });
@@ -158,16 +140,13 @@ const handleHotspotClick = (e) => {
     translatePage(currentLang);
 
     const hotspotContainer = document.querySelector('.featured-watch-explorer');
-    // REPLACE the block above with this new one to start the cycle
 if (hotspotContainer) {
     hotspotContainer.addEventListener('click', handleHotspotClick);
     
-    // Start the system:
-    activateHotspot(0);      // Show the first hotspot immediately
-    startHotspotCycle(); // And begin the automatic cycling
+    activateHotspot(0);     
+    startHotspotCycle(); 
 }
 
-    // Initialize Intersection Observer
 const scrollObserver = new IntersectionObserver(handleScrollAnimation, { root: null, threshold: 0.01, rootMargin: "0px 0px -50px 0px" });
     animatedElements.forEach(el => scrollObserver.observe(el));
 });
