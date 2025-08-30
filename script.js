@@ -1,152 +1,273 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- CACHE DOM ELEMENTS ---
-    const header = document.querySelector('.site-header');
-    const burger = document.querySelector('.burger');
-    const navMenu = document.querySelector('.main-nav');
-    const navLinks = document.querySelectorAll('.main-nav .nav-link');
-    const langButtons = document.querySelectorAll('.lang-btn');
-    const translatableElements = document.querySelectorAll('[data-key]');
+    // --- CACHE DOM ELEMENTS & SETUP ---
     const yearSpan = document.getElementById('year');
-    
-    const hotspots = document.querySelectorAll('.hotspot');
-    const hotspotInfos = document.querySelectorAll('.hotspot-info');
-    const animatedElements = document.querySelectorAll('[data-animation]');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    const translations = {
-        en: {
-            logo: "Everluxe", nav_ethos: "Our Vision", nav_featured: "Our Watches", nav_collection: "Collection", nav_appointment: "Contact", hero_title: "Heritage and Splendor", hero_subtitle: "Created not to tell time, but to define it.",
-ethos_title: "The Spirit of Craftsmanship", ethos_p1: "Everlux was created with one vision: to create watches that are not just watches, but a legacy. Each watch is a world of over a hundred details, a symphony of engineering and art.", ethos_p2: "Our philosophy is patient perfection. We respect the centuries-old tradition of watchmaking and use the materials and techniques of the future.",
-featured_title: "Chronograph Sentinel", hotspot1_title: "Tachymeter Bezel", hotspot1_desc: "Made from a single block of ceramic, scratch-resistant and accurate to measure speed.", hotspot2_title: "Sapphire crystal", hotspot2_desc: "The virtually scratch-resistant sapphire crystal with anti-reflective coating ensures perfect visibility.", hotspot3_title: "Sunray dial", hotspot3_desc: "The deep black dial reflects light, creating a dynamic display that changes with every movement.",
-collection_title: "Collection", price_from: " - from", appointment_title: "Contact us for details", appointment_subtitle: "Feel the weight, balance and detail of an Everlux watch. Schedule a personal, no-obligation visit.", form_name: "Full name", form_email: "Email", form_watch: "Wanted watch (optional)", form_button: "Submit", footer_tagline: "Time Art.", footer_explore: "Explore", footer_support: "Support", footer_faq: "Frequently Asked Questions", footer_warranty: "Warranty",
-       },
-        ge: { // Georgian translations...
-            logo: "ევერლაქსი", nav_ethos: "ჩვენი ხედვა", nav_featured: "ჩვენი საათები", nav_collection: "კოლექცია", nav_appointment: "კონტაქტი", hero_title: "მემკვიდრეობა და ბრწყინვალება", hero_subtitle: "შექმნილია არა დროის სათქმელად, არამედ მის განსასაზღვრად.",
-            ethos_title: "ოსტატობის სული", ethos_p1: "ევერლაქსი შეიქმნა ერთი ხედვით: შევქენით საათები, რომლებიც არ არიან უბრალო საათები, არამედ მემკვიდრეობა. თითოეული საათი ასზე მეტი დეტალისგან შემდგარი სამყაროა, ინჟინერიისა და ხელოვნების სიმფონია.", ethos_p2: "ჩვენი ფილოსოფია მომთმენი სრულყოფილებაა. ჩვენ პატივს ვცემთ საათების დამზადების მრავალსაუკუნოვან ტრადიციას და ვიყენებთ მომავლის მასალებსა და ტექნიკას.",
-            featured_title: "ქრონოგრაფი სენტინელი", hotspot1_title: "ტაქიმეტრის ბეზელი", hotspot1_desc: "მთლიანი კერამიკული ბლოკისგან დამზადებული, ნაკაწრებისადმი მდგრადი და სიჩქარის ზუსტად გასაზომი.", hotspot2_title: "საფირის კრისტალი", hotspot2_desc: "პრაქტიკულად გაუცვეთელი საფირონის კრისტალი ანტი-ამრეკლი საფარით უზრუნველყოფს სრულყოფილ ხილვადობას.", hotspot3_title: "მზის სხივის ციფერბლატი", hotspot3_desc: "ღრმა შავი ციფერბლატი ირეკლავს სინათლეს, ქმნის დინამიურ ჩვენებას, რომელიც იცვლება ყოველი მოძრაობისას.",
-            collection_title: "კოლექცია", price_from: " - დან", appointment_title: "დეტალებისთვის დაგვიკავშირდით", appointment_subtitle: "შეიგრძენით ევერლაქსის საათის წონა, ბალანსი და დეტალები. დაგეგმეთ პირადი, ვალდებულების გარეშე ვიზიტი.", form_name: "სრული სახელი", form_email: "ელ. ფოსტა", form_watch: "სასურველი საათი (ნებაყოფლობითი)", form_button: "გაგზავნა", footer_tagline: "დროის ხელოვნება.", footer_explore: "გამოიკვლიე", footer_support: "მხარდაჭერა", footer_faq: "ხშირად დასმული კითხვები", footer_warranty: "გარანტია", 
-        },
-        ru: { // Russian translations...
-            logo: "Эверлюкс", nav_ethos: "Наше видение", nav_featured: "Наши часы работы", nav_collection: "Коллекция", nav_appointment: "Контакт", hero_title: "Наследие и великолепие", hero_subtitle: "Создано не для того, чтобы показывать время, а для того, чтобы его определять",
-ethos_title: "Дух мастерства", ethos_p1: "Everlux был создан с одним видением: создавать часы, которые являются не просто часами, а наследием. Каждые часы — это мир из более чем сотни деталей, симфония инженерии и искусства", ethos_p2: "Наша философия — терпеливое совершенство. Мы уважаем многовековые традиции часового дела и используем материалы и технологии будущего",
-featured_title: "Chronograph Sentinel", hotspot1_title: "Tachymeter Bezel", hotspot1_desc: "Изготовлено из цельного куска керамика, устойчивая к царапинам и точная для измерения скорости.", hotspot2_title: "Сапфировое стекло", hotspot2_desc: "Практически устойчивое к царапинам сапфировое стекло с антибликовым покрытием обеспечивает идеальную видимость.", hotspot3_title: "Циферблат Sunray", hotspot3_desc: "Глубокий черный циферблат отражает свет, создавая динамичный дисплей, который меняется с каждым движением.",
-collection_title: "Коллекция", price_from: " - from", appointment_title: "Свяжитесь с нами для получения подробной информации", appointment_subtitle: "Почувствуйте вес, баланс и детали часов Everlux. Запланируйте личный визит без обязательств.", form_name: "Полное имя", form_email: "Электронная почта", form_watch: "Ищу часы (необязательно)", form_button: "Отправить", footer_tagline: "время искусство", footer_explore: "Изучить", footer_support: "Поддержка", footer_faq: "Часто задаваемые вопросы", footer_warranty: "Гарантия",
-   }
-    };
-    
-    const handleNavToggle = () => {
-        burger.classList.toggle('toggle');
-        navMenu.classList.toggle('nav-active');
-        document.body.classList.toggle('no-scroll'); 
-    };
-
-    const closeNav = () => {
-        burger.classList.remove('toggle');
-        navMenu.classList.remove('nav-active');
-        document.body.classList.remove('no-scroll');
-    };
-
-    const handleHeaderScroll = () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    };
-
-    const translatePage = (language) => {
-        translatableElements.forEach(element => {
-            const key = element.dataset.key;
-            const translation = translations[language]?.[key];
-            if (translation) {
-                if (key === 'price_from') {
-
-                    element.textContent = translation;
-                } else {
-                    element.textContent = translation;
-                }
-            }
-        });
-        localStorage.setItem('language', language);
-        langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === language));
-    };
-    
-
-//HOTSPOT CYCLING LOGIC ---
-let hotspotInterval;
-let userInteracted = false; 
-let currentHotspotIndex = 0; 
-const activateHotspot = (index) => {
-    hotspots.forEach(h => h.classList.remove('active'));
-    hotspotInfos.forEach(info => info.classList.remove('active'));
-
-    const activeHotspot = document.querySelector(`.hotspot[data-hotspot="${index + 1}"]`);
-    const activeInfo = document.querySelector(`.hotspot-info[data-info="${index + 1}"]`);
-
-    if (activeHotspot) activeHotspot.classList.add('active');
-    if (activeInfo) activeInfo.classList.add('active');
-};
-
-const startHotspotCycle = () => {
-    clearInterval(hotspotInterval); 
-    hotspotInterval = setInterval(() => {
-        if (userInteracted) return;
-        currentHotspotIndex = (currentHotspotIndex + 1) % hotspots.length;
-        activateHotspot(currentHotspotIndex);
-    }, 5000); 
-};
-
-const handleHotspotClick = (e) => {
-    const targetHotspot = e.target.closest('.hotspot');
-    if (!targetHotspot) return;
-    if (!userInteracted) {
-        clearInterval(hotspotInterval);
-        userInteracted = true;
-    }
-
-    const hotspotId = targetHotspot.dataset.hotspot;
-    currentHotspotIndex = parseInt(hotspotId) - 1;
-    activateHotspot(currentHotspotIndex); 
-};
-
-    const handleScrollAnimation = (entries, observer) => {
+    // --- MASTER SCROLL CONDUCTOR ---
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const animationType = entry.target.dataset.animation;
-                
-                if (animationType === 'stagger-children') {
-                    const children = entry.target.querySelectorAll('.watch-card');
-                    children.forEach((child, index) => {
-                        child.style.transitionDelay = `${index * 100}ms`;
-                    });
-                }
-                
-                entry.target.classList.add('visible');
-
-
-
-                observer.unobserve(entry.target);
+                entry.target.classList.add('is-visible');
+                scrollObserver.unobserve(entry.target);
             }
         });
-    };
-
-    // --- INITIALIZATION & EVENT LISTENERS ---
-    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => scrollObserver.observe(el));
     
-    burger.addEventListener('click', handleNavToggle);
-    navLinks.forEach(link => link.addEventListener('click', closeNav));
-    window.addEventListener('scroll', handleHeaderScroll);
-    
-    langButtons.forEach(button => {
-        button.addEventListener('click', (e) => translatePage(e.target.dataset.lang));
-    });
-    const currentLang = localStorage.getItem('language') || 'en';
-    translatePage(currentLang);
+    // --- DIGITAL TURNTABLE LOGIC ---
+    (() => {
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        const turntableSlides = gsap.utils.toArray('.slide');
+        if (!carouselWrapper || turntableSlides.length === 0) return;
+        const radius = 350;
+        turntableSlides.forEach((slide, i) => {
+            const angle = i * (360 / turntableSlides.length);
+            slide.dataset.rotation = angle;
+            gsap.set(slide, { rotationY: angle, transformOrigin: `50% 50% ${-radius}px`, x: -slide.offsetWidth/2, y: -slide.offsetHeight/2 });
+        });
+        let rotationProxy = { value: 0 };
+        const autoRotate = gsap.to(rotationProxy, {
+            value: 360, duration: 30, ease: "none", repeat: -1,
+            onUpdate: () => {
+                turntableSlides.forEach(slide => {
+                    const currentAngle = parseFloat(slide.dataset.rotation) + rotationProxy.value;
+                    const relativeRotation = Math.abs(currentAngle % 360);
+                    const normalized = Math.min(relativeRotation, 360 - relativeRotation) / 180;
+                    const brightness = 1 - normalized * 0.5;
+                    const opacity = 1 - normalized * 0.4;
+                    const scale = 1 - normalized * 0.25;
+                    gsap.set(slide, { rotationY: currentAngle, filter: `brightness(${brightness})`, opacity: opacity, scale: scale, zIndex: Math.round(100 * (1 - normalized)) });
+                });
+            }
+        });
+        carouselWrapper.addEventListener('mouseenter', () => gsap.to(autoRotate, { timeScale: 0, duration: 0.5 }));
+        carouselWrapper.addEventListener('mouseleave', () => gsap.to(autoRotate, { timeScale: 1, duration: 0.5 }));
+    })();
 
-    const hotspotContainer = document.querySelector('.featured-watch-explorer');
-if (hotspotContainer) {
-    hotspotContainer.addEventListener('click', handleHotspotClick);
+    // --- CRYSTALLINE CARD PARALLAX LOGIC (WITH MOBILE FIX) ---
+    (() => {
+        const watchCards = document.querySelectorAll('.watch-card');
+        if (watchCards.length === 0) return;
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -100px 0px', threshold: 0.1 });
+            watchCards.forEach(card => cardObserver.observe(card));
+        } else {
+            watchCards.forEach(card => {
+                const watchImage = card.querySelector('.watch-image-container img');
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+                    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+                    gsap.to(card, { rotationY: x * 15, rotationX: y * -15, duration: 0.8, ease: 'power2.out' });
+                    gsap.to(watchImage, { x: x * -20, y: y * -20, duration: 1, ease: 'power2.out' });
+                });
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, { rotationY: 0, rotationX: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
+                    gsap.to(watchImage, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.5)' });
+                });
+            });
+        }
+    })();
     
-    activateHotspot(0);     
-    startHotspotCycle(); 
-}
+    // --- UNIFIED NAVIGATION & LANGUAGE LOGIC ---
+    let translations; 
+    (() => {
+        translations = {
+            en: { nav_masterpiece: 'The Masterpiece', nav_collection: 'The Collection', nav_atelier: 'Contact', cta_viewing: 'Contact Us', cta_viewing_mobile: 'Contact Us', hero_title: 'An Exhibition of Artistry', hero_subtitle: 'An interactive gallery of horological artistry.', loupe_title: 'Under the Loupe', loupe_hotspot1_title: 'Tachymeter Bezel', loupe_hotspot1_text: 'Crafted from a single ceramic block, the bezel is scratch-proof and makes measuring speed simple and clear.', loupe_hotspot2_title: 'Sapphire Crystal', loupe_hotspot2_text: 'A virtually scratchproof sapphire crystal, with an anti-reflective coating, ensures perfect legibility under any lighting condition.', loupe_hotspot3_title: 'Sunburst Dial', loupe_hotspot3_text: 'The deep black sunburst dial catches and reflects light, creating a dynamic display that shifts with every movement of the wrist.', collection_title: 'OurCollection', price_from: 'From', form_title: 'Explore our collection', form_text: '"Curious about our watches? Follow us on social media or contact us directly for updates and details.', form_name_label: 'Full Name', form_email_label: 'Email Address', form_watch_label: 'Watch of Interest (Optional)', form_button: 'Send ', form_button_sent: 'Sent!' },
+            ge: { nav_masterpiece: 'შედევრი', nav_collection: 'კოლექცია', nav_atelier: 'კონტაქტი', cta_viewing: 'დაგვიკავშირდით', cta_viewing_mobile: 'დაგვიკავშირდით', hero_title: 'ხელოვნების გამოფენა', hero_subtitle: 'საათების ხელოვნების ინტერაქტიული გალერეა.', loupe_title: 'გამადიდებელი შუშის ქვეშ', loupe_hotspot1_title: 'ტაქომეტრის ჩარჩო', loupe_hotspot1_text: 'ერთი კერამიკული ბლოკიდან შექმნილი ბეზელი დაცულია ცვეთისგან და დროის გაზომვა მარტივი და ხილვადია.', loupe_hotspot2_title: 'საფირის კრისტალი', loupe_hotspot2_text: 'პრაქტიკულად ნაკაწრგაუმტარი საფირის კრისტალი ანტირეფლექსური საფარით უზრუნველყოფს სრულყოფილ წაკითხვადობას ნებისმიერ განათებაში.', loupe_hotspot3_title: 'მზის სხივის ციფერბლატი', loupe_hotspot3_text: 'ღრმა შავი მზის სხივის ციფერბლატი ირეკლავს სინათლეს, ქმნის დინამიურ ჩვენებას, რომელიც იცვლება მაჯის ყოველი მოძრაობისას.', collection_title: 'ჩვენი კოლექცია', price_from: 'დან', form_title: 'გაეცანით ჩვენს კოლექციას', form_text: 'დაინტერესებული ხართ ჩვენი საათებით? დაგვაფოლოვეთ სოციალურ ქსელში ან დაგვიკავშირდით დეტალებისა და განახლებების გასაგებად.', form_name_label: 'სრული სახელი', form_email_label: 'ელ. ფოსტა', form_watch_label: 'სასურველი საათი (სურვილისამებრ)', form_button: 'გაგზავნა', form_button_sent: 'გაგზავნილია!' },
+            ru: { nav_masterpiece: 'Шедевр', nav_collection: 'Коллекция', nav_atelier: 'Контакт', cta_viewing: 'Связаться с нами', cta_viewing_mobile: 'Связаться с нами', hero_title: 'Выставка мастерства', hero_subtitle: 'Интерактивная галерея часового искусства.', loupe_title: 'Под лупой', loupe_hotspot1_title: 'Безель с тахиметром', loupe_hotspot1_text: 'Безель, созданный из одного керамического блока, защищён от износа, а измерять время легко и удобно.', loupe_hotspot2_title: 'Сапфировое стекло', loupe_hotspot2_text: 'Практически нецарапающееся сапфировое стекло с антибликовым покрытием обеспечивает идеальную читаемость при любом освещении.', loupe_hotspot3_title: 'Циферблат "Солнечные лучи"', loupe_hotspot3_text: 'Глубокий черный циферблат с узором "солнечные лучи" ловит и отражает свет, создавая динамичное отображение, которое меняется с каждым движением запястья.', collection_title: 'Наша коллекция', price_from: 'От', form_title: 'Ознакомьтесь с нашей коллекцией', form_text: 'Интересуетесь нашими часами? Подписывайтесь на нас в соцсетях или свяжитесь с нами напрямую, чтобы узнать подробности и новости.', form_name_label: 'Полное имя', form_email_label: 'Адрес электронной почты', form_watch_label: 'Интересующие часы (необязательно)', form_button: 'Отправлять ', form_button_sent: 'Отправлено!' }
+        };
+        
+        const burger = document.querySelector('.burger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavCta = document.querySelector('.mobile-cta');
+        const desktopSwitcher = document.querySelector('.lang-switcher');
+        const desktopActiveDisplay = document.querySelector('.lang-switcher-active');
+        const desktopOptions = document.querySelectorAll('.lang-option');
+        const mobileDial = document.querySelector('.mobile-dial');
+        const mobileDialOptions = document.querySelectorAll('.mobile-dial-option');
+        const dialRotations = { en: 0, ge: -120, ru: -240 };
+        
+        const setLanguage = (lang) => {
+            if (!translations[lang]) return; 
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+            if (desktopActiveDisplay) desktopActiveDisplay.textContent = lang.toUpperCase();
+            desktopOptions.forEach(opt => {
+                opt.classList.toggle('is-active', opt.dataset.lang === lang);
+            });
+            if (desktopSwitcher) desktopSwitcher.classList.remove('is-open');
+            if (mobileDial) {
+                const targetRotation = dialRotations[lang];
+                gsap.to(mobileDial, { rotation: targetRotation + "_short", duration: 0.7, ease: 'elastic.out(1, 0.75)' });
+                gsap.to(mobileDialOptions, { rotation: -targetRotation + "_short", duration: 0.7, ease: 'elastic.out(1, 0.75)' });
+                mobileDialOptions.forEach(opt => {
+                    opt.style.color = opt.dataset.lang === lang ? 'var(--color-primary)' : 'var(--color-text-muted)';
+                });
+            }
+            localStorage.setItem('userLanguage', lang);
+            document.documentElement.lang = lang;
+        };
+        if (burger && mobileNav) {
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('is-active');
+                mobileNav.classList.toggle('is-open');
+            });
+            mobileNavCta.addEventListener('click', () => {
+                burger.classList.remove('is-active');
+                mobileNav.classList.remove('is-open');
+            });
+        }
+        if (desktopSwitcher && desktopActiveDisplay) {
+            desktopActiveDisplay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                desktopSwitcher.classList.toggle('is-open');
+            });
+        }
+        desktopOptions.forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setLanguage(opt.dataset.lang);
+            });
+        });
+        mobileDialOptions.forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setLanguage(opt.dataset.lang);
+            });
+        });
+        document.addEventListener('click', () => {
+             if (desktopSwitcher) desktopSwitcher.classList.remove('is-open');
+        });
+        const userLang = localStorage.getItem('userLanguage') || navigator.language.split('-')[0];
+        const initialLang = translations[userLang] ? userLang : 'en';
+        setLanguage(initialLang);
+    })();
+    
+    // --- UNDER THE LOUPE LOGIC ---
+    (() => {
+        const featuredExplorer = document.querySelector('.featured-watch-explorer');
+        if (!featuredExplorer) return;
+        const triggers = featuredExplorer.querySelectorAll('.hotspot-trigger');
+        const mainWatchImage = featuredExplorer.querySelector('.main-watch-image');
+        const loupe = featuredExplorer.querySelector('.digital-loupe');
+        const isMobile = window.innerWidth <= 768;
+        if (mainWatchImage && loupe) loupe.style.backgroundImage = `url(${mainWatchImage.src})`;
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                if (trigger.classList.contains('is-active')) return;
+                triggers.forEach(t => t.classList.remove('is-active'));
+                trigger.classList.add('is-active');
+                mainWatchImage.classList.add('is-dimmed');
+                const targetX = trigger.dataset.x;
+                const targetY = trigger.dataset.y;
+                gsap.to(loupe, { 
+                    left: targetX, top: targetY, xPercent: -50, yPercent: -50,
+                    opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out', 
+                    backgroundPosition: `${targetX} ${targetY}` 
+                });
+            });
+        });
+        const loupeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loupeObserver.unobserve(featuredExplorer);
+                    if (isMobile) {
+                        const tl = gsap.timeline();
+                        const firstTrigger = triggers[0];
+                        if (!firstTrigger) return;
+                        const targetX = firstTrigger.dataset.x;
+                        const targetY = firstTrigger.dataset.y;
+                        tl.to(firstTrigger, { backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-primary)', duration: 0.5 });
+                        tl.add(() => mainWatchImage.classList.add('is-dimmed'), "<");
+                        tl.to(loupe, { opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out', left: targetX, top: targetY, xPercent: -50, yPercent: -50, backgroundPosition: `${targetX} ${targetY}` }, "<");
+                        tl.to({}, { duration: 1.5 });
+                        tl.to(firstTrigger, { backgroundColor: 'transparent', borderColor: 'var(--color-border)', duration: 0.5 });
+                        tl.add(() => mainWatchImage.classList.remove('is-dimmed'), "<");
+                        tl.to(loupe, { opacity: 0, scale: 0.5, duration: 0.8, ease: 'power3.inOut' }, "<");
+                        tl.set(firstTrigger, { clearProps: "backgroundColor,borderColor" });
+                    } else {
+                        gsap.fromTo(triggers, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out' });
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+        loupeObserver.observe(featuredExplorer);
+    })();
+    
+    // --- APPOINTMENT FORM LOGIC ---
+    (() => {
+        const form = document.querySelector('.atelier-form');
+        if (!form) return;
+        
+        const button = form.querySelector('button[type="submit"]');
+        const buttonIcon = form.querySelector('.button-icon');
+        const buttonText = form.querySelector('.button-text');
+        const statusMessage = form.querySelector('.form-status');
 
-const scrollObserver = new IntersectionObserver(handleScrollAnimation, { root: null, threshold: 0.01, rootMargin: "0px 0px -50px 0px" });
-    animatedElements.forEach(el => scrollObserver.observe(el));
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const originalButtonText = buttonText.textContent;
+            const currentLang = localStorage.getItem('userLanguage') || 'en';
+
+            button.disabled = true;
+            buttonIcon.classList.add('spinning');
+            statusMessage.style.display = 'none';
+
+            const data = new FormData(event.target);
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    buttonIcon.classList.remove('spinning');
+                    buttonIcon.innerHTML = '<i class="fas fa-check"></i>';
+                    if (translations[currentLang] && translations[currentLang].form_button_sent) {
+                        buttonText.textContent = translations[currentLang].form_button_sent;
+                    } else {
+                        buttonText.textContent = "Sent!";
+                    }
+                    
+                    statusMessage.textContent = "Thank you! Your request has been sent.";
+                    statusMessage.className = 'form-status success';
+                    form.reset();
+
+                    setTimeout(() => {
+                        button.disabled = false;
+                        buttonIcon.innerHTML = '<i class="fas fa-cog"></i>'; 
+                        buttonText.textContent = originalButtonText;
+                        statusMessage.className = 'form-status';
+                        statusMessage.style.display = 'none';
+                    }, 3000); 
+
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            } catch (error) {
+                button.disabled = false;
+                buttonIcon.classList.remove('spinning');
+                statusMessage.textContent = "Oops! There was a problem submitting your form.";
+                statusMessage.className = 'form-status error';
+            }
+        }
+        form.addEventListener("submit", handleSubmit);
+    })();
+
 });

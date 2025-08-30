@@ -3,192 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Everluxe | The Art of Time</title>
+    <title>Everluxe | The Atelier Showcase</title>
     
     <link rel="icon" href="https://raw.githubusercontent.com/osg-ge/OSG-WEBSITE-NAVBAR/main/images/favicon.svg" type="image/svg+xml">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container">
-            <a href="#hero" class="site-logo" data-key="logo">EVERLUXE</a>
-            <nav class="main-nav">
-                <a href="#ethos" class="nav-link" data-key="nav_ethos">Our Ethos</a>
-                <a href="#featured" class="nav-link" data-key="nav_featured">The Masterpiece</a>
-                <a href="#collection" class="nav-link" data-key="nav_collection">Collection</a>
-            </nav>
-            <div class="header-actions">
-                <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="ge">GE</button>
-                    <button class="lang-btn" data-lang="ru">RU</button>
-                </div>
-                <a href="#appointment" class="btn btn-primary" data-key="nav_appointment">კონტაქტი</a>
+<header class="site-header">
+    <a href="#" class="site-logo">EVERLUXE</a>
+
+    <nav class="main-nav">
+        <a href="#featured" class="nav-link" data-key="nav_masterpiece">The Masterpiece</a>
+        <a href="#collection" class="nav-link" data-key="nav_collection">The Collection</a>
+        <a href="#appointment" class="nav-link" data-key="nav_atelier">The Atelier</a>
+    </nav>
+
+    <div class="header-controls-desktop">
+        <a href="#appointment" class="btn btn-primary nav-cta" data-key="cta_viewing"></a>
+
+        <div class="lang-switcher">
+            <button class="lang-switcher-active">EN</button>
+            <div class="lang-options">
+                <button class="lang-option" data-lang="en">EN</button>
+                <button class="lang-option" data-lang="ge">GE</button>
+                <button class="lang-option" data-lang="ru">RU</button>
             </div>
-            <div class="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero" class="hero-section">
-            <div class="hero-video-wrapper">
-                <video class="hero-video-bg" playsinline autoplay muted loop poster="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=1600&auto=format&fit=crop" src="https://assets.mixkit.co/videos/preview/mixkit-a-detailed-close-up-of-a-rolex-watch-4993-large.mp4"></video>
-            </div>
-            <div class="hero-content">
-                <h1 class="hero-title" data-key="hero_title">Where Legacy Meets Luminescence</h1>
-                <p class="hero-subtitle" data-key="hero_subtitle">Crafted not to tell time, but to define it.</p>
-                <a href="#ethos" class="scroll-down-link" aria-label="Scroll to next section">
-                </a>
-            </div>
-        </section>
-
-
-        
-        <section id="featured" class="featured-section content-section" data-animation="fade-up">
-            <div class="container">
-                <h2 class="section-title centered" data-key="featured_title">The Chronograph Sentinel</h2>
-                <div class="featured-watch-explorer">
-                    <div class="featured-image-wrapper">
-                        <img src="images/IMG-20250628-WA0011.jpg?raw=true" alt="The Chronograph Sentinel, our featured timepiece">
-                        <button class="hotspot" style="top: 30%; left: 62%;" data-hotspot="1" aria-label="View Tachymeter Bezel details">1</button>
-                        <button class="hotspot" style="top: 46%; left: 77%;" data-hotspot="2" aria-label="View Sapphire Crystal details">2</button>
-                        <button class="hotspot" style="top: 65%; left: 29%;" data-hotspot="3" aria-label="View Sunburst Dial details">3</button>
-                    </div>
-                    <div class="featured-details">
-                        <div class="hotspot-info active" data-info="1">
-                            <h3 data-key="hotspot1_title">Tachymeter Bezel</h3>
-                            <p data-key="hotspot1_desc">Forged from single-block ceramic, the tachymeter bezel is both exceptionally scratch-resistant and a vital tool for measuring speed with precision.</p>
-                        </div>
-                        <div class="hotspot-info" data-info="2">
-                            <h3 data-key="hotspot2_title">Sapphire Crystal</h3>
-                            <p data-key="hotspot2_desc">A virtually scratchproof sapphire crystal, with an anti-reflective coating, ensures perfect legibility under any lighting condition.</p>
-                        </div>
-                        <div class="hotspot-info" data-info="3">
-                            <h3 data-key="hotspot3_title">Sunburst Dial</h3>
-                            <p data-key="hotspot3_desc">The deep black sunburst dial catches and reflects light, creating a dynamic display that shifts with every movement of the wrist.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="collection" class="collection-section content-section">
-    <div class="container">
-        <h2 class="section-title centered" data-key="collection_title" data-animation="fade-up">Explore the Collection</h2>
-        <div class="watches-grid" data-animation="stagger-children">
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0001.jpg" alt="Poedagar Green" class="watch-image"></div>
-                <div class="watch-info"><h3>Poedagar - Green Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 79₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0002.jpg" alt="Poedagar Blue" class="watch-image"></div>
-                <div class="watch-info"><h3>Poedagar - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 79₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0004.jpg" alt="Binbond Blue" class="watch-image"></div>
-                <div class="watch-info"><h3>Binbond - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0005.jpg" alt="Binbond Green" class="watch-image"></div>
-                <div class="watch-info"><h3>Binbond - Green Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0006.jpg" alt="Binbond Black" class="watch-image"></div>
-                <div class="watch-info"><h3>Binbond - Black Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0007.jpg" alt="BESTWIN White" class="watch-image"></div>
-                <div class="watch-info"><h3>BESTWIN - White Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 59₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0008.jpg" alt="BESTWIN Blue" class="watch-image"></div>
-                <div class="watch-info"><h3>BESTWIN - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 59₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0009.jpg" alt="NAVIFORCE Green" class="watch-image"></div>
-                <div class="watch-info"><h3>NAVIFORCE - Dark Green</h3><p class="watch-price"><span data-key="price_from">From</span> 99₾</p></div>
-            </article>
-            
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0010.jpg" alt="NAVIFORCE Brown Leather" class="watch-image"></div>
-                <div class="watch-info"><h3>NAVIFORCE - Dark Brown</h3><p class="watch-price"><span data-key="price_from">From</span> 119₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0011.jpg" alt="NAVIFORCE Gold-Black" class="watch-image"></div>
-                <div class="watch-info"><h3>NAVIFORCE - Gold-Black</h3><p class="watch-price"><span data-key="price_from">From</span> 129₾</p></div>
-            </article>
-
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0012.jpg" alt="NAVIFORCE Light Blue" class="watch-image"></div>
-                <div class="watch-info"><h3>NAVIFORCE - Light Blue</h3><p class="watch-price"><span data-key="price_from">From</span> 149₾</p></div>
-            </article>
-    
-            <article class="watch-card">
-                <div class="watch-image-container"><img src="images/IMG-20250628-WA0013.jpg" alt="NAVIFORCE Black-Brown" class="watch-image"></div>
-                <div class="watch-info"><h3>NAVIFORCE - Black-Brown</h3><p class="watch-price"><span data-key="price_from">From</span> 109₾</p></div>
-            </article>
-            
         </div>
     </div>
-</section>
-        
-        <section id="appointment" class="appointment-section content-section" data-animation="fade-up">
-            <div class="container grid-2-col">
-                <div class="appointment-text-col">
-                    <h2 class="section-title" data-key="appointment_title">A Private Viewing</h2>
-                    <p data-key="appointment_subtitle">Experience the weight, balance, and intricate detail of an Everluxe timepiece firsthand. Schedule a private, no-obligation viewing with one of our specialists.</p>
-                </div>
-                <div class="appointment-form-col">
-                    <form action="#" method="POST" class="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required placeholder=" ">
-                            <label for="name" data-key="form_name">Full Name</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required placeholder=" ">
-                            <label for="email" data-key="form_email">Email Address</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="watch_of_interest" name="watch_of_interest" placeholder=" ">
-                            <label for="watch_of_interest" data-key="form_watch">Watch of Interest (Optional)</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary full-width" data-key="form_button">Request Viewing</button>
-                         <div class="footer-socials">
-                    <a href="https://www.instagram.com/everluxe.watches/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@essenceluxe.watches" aria-label="Facebook"><i class="fab fa-tiktok"></i></a>
-                </div>
-                    </form>
+
+    <div class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="mobile-dial-container">
+            <div class="mobile-dial-marker"></div>
+            <div class="mobile-dial">
+                <div class="mobile-dial-option" data-lang="en">EN</div>
+                <div class="mobile-dial-option" data-lang="ge">GE</div>
+                <div class="mobile-dial-option" data-lang="ru">RU</div>
+            </div>
+        </div>
+        <a href="#appointment" class="btn btn-primary mobile-cta" data-key="cta_viewing_mobile">Request a Viewing</a>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title" data-key="hero_title">An Exhibition of Artistry</h1>
+            <p class="hero-subtitle" data-key="hero_subtitle">An interactive gallery of horological artistry.</p>
+        </div>
+        <div id="showcase-container">
+            <div class="carousel-wrapper">
+                <div class="carousel">
+                    <div class="slide"><img src="images/IMG-20250628-WA0001.jpg" alt="Poedagar Green Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0002.jpg" alt="Poedagar Blue Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0004.jpg" alt="Binbond Blue Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0005.jpg" alt="Binbond Green Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0006.jpg" alt="Binbond Black Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0011.jpg" alt="NAVIFORCE Gold-Black Watch"></div>
+                    <div class="slide"><img src="images/IMG-20250628-WA0012.jpg" alt="NAVIFORCE Light Blue Watch"></div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-            <div class="footer-bottom">
-                <p>© <span id="year"></span> Everluxe   •   Powered by <a href="https://osgweb.ge/#hero"><img src="./images/osg.png" alt="OSG Logo"></a></p>
+    <section id="featured" class="featured-section content-section">
+        <div class="container">
+            <h2 class="section-title centered" data-key="loupe_title">Under the Loupe</h2>
+            <div class="featured-watch-explorer">
+                <div class="featured-image-wrapper">
+                    <img class="main-watch-image" src="images/IMG-20250628-WA0011.jpg" alt="The Chronograph Sentinel, our featured timepiece">
+                    <div class="digital-loupe"></div>
+                </div>
+                <div class="featured-details">
+                    <div class="hotspot-trigger is-active" data-hotspot-id="1" data-x="62%" data-y="30%">
+                        <h3 data-key="loupe_hotspot1_title">Tachymeter Bezel</h3>
+                        <p data-key="loupe_hotspot1_text">Forged from single-block ceramic, the tachymeter bezel is both exceptionally scratch-resistant and a vital tool for measuring speed with precision.</p>
+                    </div>
+                    <div class="hotspot-trigger" data-hotspot-id="2" data-x="77%" data-y="46%">
+                        <h3 data-key="loupe_hotspot2_title">Sapphire Crystal</h3>
+                        <p data-key="loupe_hotspot2_text">A virtually scratchproof sapphire crystal, with an anti-reflective coating, ensures perfect legibility under any lighting condition.</p>
+                    </div>
+                    <div class="hotspot-trigger" data-hotspot-id="3" data-x="29%" data-y="65%">
+                        <h3 data-key="loupe_hotspot3_title">Sunburst Dial</h3>
+                        <p data-key="loupe_hotspot3_text">The deep black sunburst dial catches and reflects light, creating a dynamic display that shifts with every movement of the wrist.</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="collection" class="collection-section content-section" data-reveal>
+        <div class="container">
+            <h2 class="section-title centered" data-key="collection_title">Explore The Collection</h2>
+            <div class="watches-grid">
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0001.jpg" alt="Poedagar Green" class="watch-image"></div>
+                    <div class="watch-info"><h3>Poedagar - Green Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 79₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0002.jpg" alt="Poedagar Blue" class="watch-image"></div>
+                    <div class="watch-info"><h3>Poedagar - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 79₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0004.jpg" alt="Binbond Blue" class="watch-image"></div>
+                    <div class="watch-info"><h3>Binbond - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0005.jpg" alt="Binbond Green" class="watch-image"></div>
+                    <div class="watch-info"><h3>Binbond - Green Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0006.jpg" alt="Binbond Black" class="watch-image"></div>
+                    <div class="watch-info"><h3>Binbond - Black Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 69₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0007.jpg" alt="BESTWIN White" class="watch-image"></div>
+                    <div class="watch-info"><h3>BESTWIN - White Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 59₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0008.jpg" alt="BESTWIN Blue" class="watch-image"></div>
+                    <div class="watch-info"><h3>BESTWIN - Blue Edition</h3><p class="watch-price"><span data-key="price_from">From</span> 59₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0009.jpg" alt="NAVIFORCE Green" class="watch-image"></div>
+                    <div class="watch-info"><h3>NAVIFORCE - Dark Green</h3><p class="watch-price"><span data-key="price_from">From</span> 99₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0010.jpg" alt="NAVIFORCE Brown Leather" class="watch-image"></div>
+                    <div class="watch-info"><h3>NAVIFORCE - Dark Brown</h3><p class="watch-price"><span data-key="price_from">From</span> 119₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0011.jpg" alt="NAVIFORCE Gold-Black" class="watch-image"></div>
+                    <div class="watch-info"><h3>NAVIFORCE - Gold-Black</h3><p class="watch-price"><span data-key="price_from">From</span> 129₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0012.jpg" alt="NAVIFORCE Light Blue" class="watch-image"></div>
+                    <div class="watch-info"><h3>NAVIFORCE - Light Blue</h3><p class="watch-price"><span data-key="price_from">From</span> 149₾</p></div>
+                </article>
+                <article class="watch-card">
+                    <div class="watch-image-container"><img src="images/IMG-20250628-WA0013.jpg" alt="NAVIFORCE Black-Brown" class="watch-image"></div>
+                    <div class="watch-info"><h3>NAVIFORCE - Black-Brown</h3><p class="watch-price"><span data-key="price_from">From</span> 109₾</p></div>
+                </article>
+            </div>
+        </div>
+    </section>
 
+    <section id="appointment" class="appointment-section content-section" data-reveal>
+        <div class="container grid-2-col">
+            <div class="appointment-text-col">
+                <h2 class="section-title" data-key="form_title">A Private Viewing</h2>
+                <p data-key="form_text">Experience the weight, balance, and intricate detail of an Everluxe timepiece firsthand. Schedule a private, no-obligation viewing with one of our specialists.</p>
+            </div>
+            <div class="appointment-form-col">
+                <form class="atelier-form" action="https://formspree.io/f/myzjpoln" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name" data-key="form_name_label">Full Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email" data-key="form_email_label">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="watch_of_interest" name="Watch of Interest" placeholder=" ">
+                        <label for="watch_of_interest" data-key="form_watch_label">Watch of Interest (Optional)</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">
+                        <span class="button-text" data-key="form_button">REQUEST VIEWING</span>
+                        <span class="button-icon"><i class="fas fa-cog"></i></span>
+                    </button>
+                    <p class="form-status"></p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/everluxe.watches/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@essenceluxe.watches" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+<footer class="site-footer">
+    <p>© <span id="year"></span> Everluxe &nbsp;&nbsp;•&nbsp;&nbsp; Powered by <a href="https://osgweb.ge/" target="_blank"><img src="./images/osg.png" alt="OSG Logo"></a></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script> 
+<script src="script.js"></script>
 </body>
 </html>
